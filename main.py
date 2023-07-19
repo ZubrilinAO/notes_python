@@ -70,7 +70,7 @@ def print_note(note_data, note_id):
     print()
 
 # Функция для вывода списка всех заметок
-def list_notes():
+def list_notes_date():
     date_input = input('Введите дату в формате ГГГГ-ММ-ДД: ')
     notes = read_notes()
     for note_id, note_data in notes.items():
@@ -84,6 +84,11 @@ def list_notes():
 
         if note_date == date_filter:
             print_note(note_data, note_id)
+
+def list_notes():
+    notes = read_notes()
+    for note_id, note_data in notes.items():
+        print_note(note_data, note_id)
  
 # Функция для чтения конкретной заметки по идентификатору
 def read_note():
@@ -101,9 +106,10 @@ def main():
         print('1. Добавить заметку')
         print('2. Удалить заметку')
         print('3. Редактировать заметку')
-        print('4. Вывести список заметок')
+        print('4. Вывести список заметок по дате')
         print('5. Просмотреть заметку')
-        print('6. Выход')
+        print('6. Вывести весь список заметок')
+        print('7. Выход')
         choice = input('Введите номер действия: ')
         if choice == '1':
             add_note()
@@ -112,10 +118,12 @@ def main():
         elif choice == '3':
             edit_note()
         elif choice == '4':
-            list_notes()
+            list_notes_date()
         elif choice == '5':
             read_note()
         elif choice == '6':
+             list_notes()
+        elif choice == '7':
             return
         else:
             print(f'Команды {choice} не существует.')
